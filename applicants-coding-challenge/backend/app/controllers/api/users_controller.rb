@@ -1,7 +1,5 @@
 class Api::UsersController < ApplicationController
   def create
-    puts params.inspect
-
     @user = User.new(user_params)
     if @user.save
       render 'api/users/show'
@@ -30,9 +28,9 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by()
+    @user = User.find_by(id: params[:id])
     if @user.update_attributes(user_params)
-      render @user
+      render 'api/users/show'
     elsif @user
       render json: ['User not found'], status: 404
     end
@@ -40,6 +38,6 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :zip_code, :email, :coding_test, :user_type_id)
+    params.require(:user).permit(:first_name, :last_name, :zip_code, :email, :coding_test, :user_type_id, :user_id)
   end
 end

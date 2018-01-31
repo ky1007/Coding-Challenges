@@ -13,18 +13,18 @@ export const editUser = user => ({
 });
 
 export const fetchUsers = users => dispatch => (
-  APIUtil.fetchUsers(users).then(users => (
-    dispatch(receiveUsers(users))
+  APIUtil.fetchUsers(users).then(response => response.json())
+    .then(users => (dispatch(receiveUsers(users.json()))
   ))
 );
 export const updateUser = user => dispatch => (
-  APIUtil.updateUser(user).then(user => (
-    dispatch(editUser(user))
+  APIUtil.updateUser(user).then(response => response.json())
+    .then(user => (dispatch(editUser(user))
   ))
 );
 export const createUser = user => dispatch => (
-  APIUtil.createUser(user).then(user => (
-    dispatch(receiveUsers(user))
+  APIUtil.createUser(user).then(response => response.json())
+    .then(user => (dispatch(receiveUsers(user))
   ))
 );
 

@@ -12,7 +12,7 @@ class ApplicantForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.updateEntry = this.updateEntry.bind(this);
+    this.updateFields = this.updateFields.bind(this);
   }
 
   componentDidMount() {
@@ -24,10 +24,10 @@ class ApplicantForm extends React.Component {
 
     const user = this.state;
     this.props.createUser(user)
-      .then(goal => this.props.history.push(`/coding_test/${user.id}`));
+      .then(user => this.props.history.push('/coding_test/'));
   }
 
-  updateEntry(field) {
+  updateFields(field) {
     return e => this.setState({[field]: e.target.value });
   }
 
@@ -43,19 +43,19 @@ class ApplicantForm extends React.Component {
           <input ref={(input) => { this.nameInput = input; }}
                   placeholder='First Name'
                   value={first_name}
-                  onChange={this.updateEntry('first_name')} />
+                  onChange={this.updateFields('first_name')} />
 
           <input placeholder='Last Name'
                   value={last_name}
-                  onChange={this.updateEntry('last_name')} />
+                  onChange={this.updateFields('last_name')} />
 
           <input placeholder='Email Address'
                   value={email}
-                  onChange={this.updateEntry('email')} />
+                  onChange={this.updateFields('email')} />
 
           <input placeholder='Zip Code'
                   value={zip_code}
-                  onChange={this.updateEntry('zip_code')} />
+                  onChange={this.updateFields('zip_code')} />
 
           <button onClick={this.handleSubmit} className="entry-form-button entry-submit-button">Submit</button>
         </form>

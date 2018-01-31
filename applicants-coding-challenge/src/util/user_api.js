@@ -4,7 +4,6 @@ const header = {
   'Content-Type': 'application/json',
 };
 
-
 export const fetchUsers = () => (
   fetch(usersURL, {
     method: 'GET',
@@ -18,8 +17,9 @@ export const createUser = user => (
   })
 );
 export const updateUser = user => (
-  fetch(usersURL, {
+  fetch(`${usersURL}${user.user_id}`, {
     method: 'PATCH',
-    data: { user },
+    headers: header,
+    body: JSON.stringify(user),
   })
 );
