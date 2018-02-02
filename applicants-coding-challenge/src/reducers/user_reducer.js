@@ -10,8 +10,8 @@ const userReducer = (state = {}, action) => {
       const users = action.allUsers;
       return users;
     case UPDATE_USER:
-      const user = action.user;
-      return user;    
+      const newState = merge({}, state, action.users);
+      return newState;
     default:
       return state;
   }

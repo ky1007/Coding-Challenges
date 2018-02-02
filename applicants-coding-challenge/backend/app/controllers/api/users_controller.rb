@@ -8,20 +8,20 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def show
-    # .find_by returns true or false whereas .find will throw an error
-    @user = User.find_by(id: params[:id])
-    if @user 
-      render json: @user
-    else 
-      render json: ['No user found'], status: 404
-    end
-  end
+  # def show
+  #   # .find_by returns true or false whereas .find will throw an error
+  #   @user = User.find_by(id: params[:id])
+  #   if @user 
+  #     render json: @user
+  #   else 
+  #     render json: ['No user found'], status: 404
+  #   end
+  # end
 
   def index
     @users = User.all
     if @users
-      render json: @users
+      render 'api/users/index'
     else
       render json: ['No users found'], status: 404
     end
@@ -38,6 +38,6 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :zip_code, :email, :coding_test, :user_type_id, :user_id)
+    params.require(:user).permit(:first_name, :last_name, :zip_code, :email, :coding_test, :user_type_id, :id, :admitted)
   end
 end

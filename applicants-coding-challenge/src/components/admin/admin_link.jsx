@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const AdminLink = () => (
-  <aside>
+  <aside className="nav-link">
     <NavLink to='/administrator'>Administrator?</NavLink>
   </aside>
 );

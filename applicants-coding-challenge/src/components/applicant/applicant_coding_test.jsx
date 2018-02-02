@@ -5,10 +5,10 @@ class ApplicantCodingTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.users.id,     
       coding_test: '',
-      user_id: this.props.users.id,     
     };
-
+    console.log(this.props.users);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateFields = this.updateFields.bind(this);
   }
@@ -20,7 +20,6 @@ class ApplicantCodingTest extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = this.state;
-    console.log(user, 'user');
     this.props.updateUser(user)
       .then(user => this.props.history.push('/thank_you'));
   }
@@ -36,7 +35,7 @@ class ApplicantCodingTest extends React.Component {
       <div>
         <h1>Application to App Academy</h1>
         <h2>The last step of this application is a coding challenge. Please read the challenge below.</h2>
-        <p>twoSum</p>
+        <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target. <br/>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
         <form>
           <textarea ref={(input) => { this.codingTest = input; }}
                   placeholder='Type code here'

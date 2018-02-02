@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createUser } from '../actions/user_actions';
+import { createUser } from '../../actions/user_actions';
 import ApplicantForm from './applicant_form';
 
 const mapStateToProps = (state) => ({
