@@ -1,14 +1,18 @@
 const searchBox = document.querySelector('.search-box');
-const searchResults = document.querySelector('search-results');
+const searchResults = document.querySelector('.search-results');
 
-const fetchResults = (input) => (
-  fetch(`https://swapi.co/api/people/?search=${searchBox.value}`)
-    .then(response => response.json())
-    .then(jsonResponse => parseResults(jsonResponse))
-);
+const fetchResults = (input) => {
+  if (searchBox.value === '') {
+    return null;
+  } else {
+    fetch(`https://swapi.co/api/people/?search=${searchBox.value}`)
+      .then(response => response.json())
+      .then(jsonResponse => parseResults(jsonResponse));
+  }
+};
 
-const parseResults = (response) => {
-  const html = response.map((element, idx) => (
+const parseResults = response => {
+  const html = response.results.map((element, idx) => (
     `<li>
       ${element.name}
     </li>`
@@ -16,4 +20,4 @@ const parseResults = (response) => {
   searchResults.innerHTML = html;
 };
 
-searchBox.addEventListener('input', fetchResults);
+searchBox.addEventListener('keypress', fetchResults);
